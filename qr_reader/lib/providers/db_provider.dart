@@ -113,4 +113,24 @@ class DBProvider{
     
   }  
 
+  Future<int?> updateScan(ScanModel scanModified) async {
+    final db = await database;
+    final res = await db?.update('Scans', scanModified.toJson(), where: 'id = ?', whereArgs: [scanModified.id]);
+    return res;
+  }
+
+  Future<int?> deleteScan(int id) async {
+    final db = await database;
+    final res = await db?.delete('Scans', where: 'id = ?', whereArgs: [id]);
+    return res;
+  }
+
+  Future<int?> deleteAllScan() async {
+    final db = await database;
+    final res = await db?.rawDelete('''
+      DELETE FROM Scans
+    ''');
+    return res;
+  }
+
 }
