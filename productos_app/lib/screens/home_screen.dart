@@ -21,11 +21,11 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Productos'),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: productsService.products.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'product'),
-            child: const ProductCard()
+            child: ProductCard(product: productsService.products[index])
           );
         },
       ),
